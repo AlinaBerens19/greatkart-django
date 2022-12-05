@@ -139,8 +139,8 @@ MESSAGE_TAGS = {
     messages.ERROR: 'danger',
 }
 
-EMAIL_HOST = 'smtp.office365.com'
+EMAIL_HOST = 'smtp.mandrillapp.com'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = '***@outlook.com'
+EMAIL_HOST_USER = 'self'
 GMAIL_PASSWORD = '***'
 EMAIL_USE_TLS = True
