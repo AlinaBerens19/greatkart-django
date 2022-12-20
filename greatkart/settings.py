@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
+from decouple import config
 import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -21,10 +22,10 @@ BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '5rqi-qx%+ff^9^gok4xxss5&7gce56&c!3(3=sp@g=#w)rgirb'
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = config('DEBUG', default=True, cast=bool)
 
 
 ALLOWED_HOSTS = []
@@ -43,7 +44,7 @@ INSTALLED_APPS = [
     'accounts',
     'store',
     'carts',
-    'orders'
+    'orders',
 ]
 
 MIDDLEWARE = [
@@ -140,8 +141,8 @@ MESSAGE_TAGS = {
     messages.ERROR: 'danger',
 }
 
-EMAIL_HOST = 'smtp.mandrillapp.com'
-EMAIL_PORT = 587
-EMAIL_HOST_USER = 'self'
-GMAIL_PASSWORD = '***'
-EMAIL_USE_TLS = True
+EMAIL_HOST = config('EMAIL_HOST', default='localhost')
+EMAIL_PORT = config('EMAIL_PORT', cast=int)
+EMAIL_HOST_USER = config('EMAIL_HOST_USER')
+EMAIL_PASSWORD = config('EMAIL_PASSWORD')
+EMAIL_USE_TLS = config('EMAIL_USE_TLS', cast=bool)
